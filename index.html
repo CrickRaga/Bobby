@@ -107,49 +107,66 @@ h3 {
 
 <div class="info-container" id="infoContainer"></div>
 
-<script>
-function showSport(sport){
-  const data = JSON.parse(localStorage.getItem('sportsData')) || {};
-  console.log('Data for', sport, ':', data[sport]);
-  
-  if(!data[sport] || data[sport].length===0){
-    alert(`⚠️ No data for ${sport}. Add via Admin Page.`);
-    return;
-  }
+<script type="module">
+// Firebase SDK imports
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
+// Firebase config and init (same as admin.html)
+const firebaseConfig = {
+  apiKey: "AIzaSyCs6amWdsq62IKw9mGcL7aZK5GAcVlrVVE",
+  authDomain: "bobby-3c61e.firebaseapp.com",
+  projectId: "bobby-3c61e",
+  storageBucket: "bobby-3c61e.firebasestorage.app",
+  messagingSenderId: "564932320027",
+  appId: "1:564932320027:web:af6f75c50ccca0df75d1be"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Show sport data fetched from Firestore
+async function showSport(sport) {
   const container = document.getElementById('infoContainer');
-  container.innerHTML=''; // clear previous
+  container.innerHTML = ''; // clear previous
 
-  data[sport].forEach((entry,index)=>{
-    const wrapper = document.createElement('div');
-    wrapper.className='info-card';
+  try {
+    const snapshot = await getDocs(collection(db, sport));
+    if (snapshot.empty) {
+      alert(`⚠️ No data for ${sport}. Add via Admin Page.`);
+      return;
+    }
 
-    // Optional: header for match number
-    const matchTitle = document.createElement('h4');
-    matchTitle.textContent = `${sport.toUpperCase()} Entry #${index+1}`;
-    wrapper.appendChild(matchTitle);
+    snapshot.forEach((docSnap, index) => {
+      const entry = docSnap.data();
+      const wrapper = document.createElement('div');
+      wrapper.className = 'info-card';
 
-    for(const key in entry){
-      if(entry[key]){
-        // Image field ko skip karo kyunki humne use remove kar diya hai
-        if(key !== 'image') {
-          const fieldTitle=document.createElement('h4');
-          fieldTitle.textContent=key.replace(/([A-Z])/g,' $1').replace(/^./,s=>s.toUpperCase());
-          const para=document.createElement('p');
-          para.textContent=entry[key];
+      const matchTitle = document.createElement('h4');
+      matchTitle.textContent = `${sport.toUpperCase()} Entry #${index + 1}`;
+      wrapper.appendChild(matchTitle);
+
+      for (const key in entry) {
+        // Skip timestamp field and any undefined/null
+        if (entry[key] && key !== 'timestamp') {
+          const fieldTitle = document.createElement('h4');
+          // Convert camelCase or keys like winnerTeamToday to "Winner Team Today"
+          fieldTitle.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+          const para = document.createElement('p');
+          para.textContent = entry[key];
           wrapper.appendChild(fieldTitle);
           wrapper.appendChild(para);
         }
       }
-    }
 
-    container.appendChild(wrapper);
-  });
+      container.appendChild(wrapper);
+    });
+  } catch (error) {
+    alert('Error fetching data: ' + error.message);
+  }
 }
 
-function goToAdmin() {
-  window.location.href = 'admin.html';
-}
+// Export function for buttons
+window.showSport = showSport;
 </script>
 </body>
 </html>
