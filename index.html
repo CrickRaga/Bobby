@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRICKRAGA🥎</title>
 <style>
-      * {
+    * {
       -webkit-tap-highlight-color: transparent;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Orbitron', sans-serif;
-      }
+    }
+
 body {
   margin:0; padding:0;
   background:#fff;
@@ -152,18 +153,27 @@ async function showSport(sport) {
       matchTitle.textContent = `${sport.toUpperCase()} Entry #${index + 1}`;
       wrapper.appendChild(matchTitle);
 
-      for (const key in entry) {
-        // Skip timestamp field and any undefined/null
-        if (entry[key] && key !== 'timestamp') {
-          const fieldTitle = document.createElement('h4');
-          // Convert camelCase or keys like winnerTeamToday to "Winner Team Today"
-          fieldTitle.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
-          const para = document.createElement('p');
-          para.textContent = entry[key];
-          wrapper.appendChild(fieldTitle);
-          wrapper.appendChild(para);
-        }
-      }
+const fieldOrder = [
+  "upcomingMatch",
+  "description",
+  "tossBet",
+  "tossFlip",
+  "tossResult",
+  "tossWinner",
+  "winnerTeamChooseTo",
+  "tossBetMarket",
+  "winnerTeamToday"
+];
+fieldOrder.forEach(key => {
+  if (entry[key]) {
+    const fieldTitle = document.createElement('h4');
+    fieldTitle.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+    const para = document.createElement('p');
+    para.textContent = entry[key];
+    wrapper.appendChild(fieldTitle);
+    wrapper.appendChild(para);
+  }
+});
 
       container.appendChild(wrapper);
     });
