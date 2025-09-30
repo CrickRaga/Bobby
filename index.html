@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRICKRAGA🥎</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>CRICKRAGA🥎 | Premium Sports Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     * {
@@ -14,708 +14,1161 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     :root {
-      --primary: #f59e0b;
-      --primary-dark: #d97706;
-      --secondary: #3b82f6;
-      --accent: #ef4444;
-      --success: #10b981;
-      --dark: #0f172a;
-      --darker: #0a0f1c;
-      --light: #e2e8f0;
-      --lighter: #f8fafc;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(255, 255, 255, 0.1);
+      --primary: #FF6B35;
+      --primary-dark: #E55A2B;
+      --primary-glow: rgba(255, 107, 53, 0.4);
+      --secondary: #00D4AA;
+      --accent: #4361EE;
+      --success: #06D6A0;
+      --warning: #FFD166;
+      --danger: #EF476F;
+      --dark: #0A0F1C;
+      --darker: #050811;
+      --dark-card: #121827;
+      --dark-border: #1E293B;
+      --light: #F8FAFC;
+      --light-text: #E2E8F0;
+      --light-secondary: #94A3B8;
+      --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+      --gradient-secondary: linear-gradient(135deg, #4361EE 0%, #3A56D4 100%);
+      --gradient-dark: linear-gradient(135deg, #0A0F1C 0%, #121827 50%, #1E293B 100%);
+      --gradient-card: linear-gradient(135deg, rgba(18, 24, 39, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%);
+      --shadow-primary: 0 20px 40px rgba(255, 107, 53, 0.15);
+      --shadow-dark: 0 25px 50px rgba(0, 0, 0, 0.25);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
     }
 
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1e293b 100%);
-      font-family: 'Poppins', sans-serif;
+      background: var(--gradient-dark);
+      font-family: 'Inter', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      color: var(--light);
+      color: var(--light-text);
       overflow-x: hidden;
       position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      perspective: 1000px;
     }
 
-    /* Animated Background */
-    .bg-animation {
+    /* Premium Background Effects */
+    .premium-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -2;
+      z-index: -3;
       overflow: hidden;
     }
 
-    .bg-particle {
+    .bg-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.3;
+      transform-style: preserve-3d;
+    }
+
+    .bg-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, var(--primary-glow) 0%, transparent 70%);
+      opacity: 0.1;
+      animation: glow-pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.2; }
+    }
+
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .shape {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      background: var(--gradient-primary);
+      filter: blur(40px);
       opacity: 0.1;
-      animation: float-particle 20s infinite linear;
+      animation: float-shape 20s infinite linear;
+      transform-style: preserve-3d;
     }
 
-    @keyframes float-particle {
-      0% {
-        transform: translateY(0) translateX(0);
-      }
-      25% {
-        transform: translateY(-20vh) translateX(10vw);
-      }
-      50% {
-        transform: translateY(10vh) translateX(20vw);
-      }
-      75% {
-        transform: translateY(20vh) translateX(-10vw);
-      }
-      100% {
-        transform: translateY(0) translateX(0);
-      }
+    @keyframes float-shape {
+      0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      33% { transform: translate3d(30vw, 40vh, 100px) rotate(120deg); }
+      66% { transform: translate3d(-20vw, 60vh, -50px) rotate(240deg); }
+      100% { transform: translate3d(0, 0, 0) rotate(360deg); }
     }
 
-    /* Header Styles */
-    .header-container {
+    /* Smooth Scroll Container */
+    .smooth-scroll-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      transform-style: preserve-3d;
+    }
+
+    /* Premium Header */
+    .premium-header {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 60px;
       position: relative;
-      z-index: 1;
-      padding: 0 20px;
+      z-index: 10;
+      padding: 0 30px;
+      width: 100%;
+      max-width: 1200px;
+      transform-style: preserve-3d;
     }
 
     .logo-container {
       position: relative;
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      transform-style: preserve-3d;
     }
 
     .logo-glow {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-      filter: blur(40px);
-      opacity: 0.3;
+      transform: translate3d(-50%, -50%, 0);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      filter: blur(60px);
+      opacity: 0.5;
       z-index: -1;
-      animation: pulse-glow 4s ease-in-out infinite;
+      animation: logo-glow-pulse 4s ease-in-out infinite;
     }
 
-    @keyframes pulse-glow {
+    @keyframes logo-glow-pulse {
       0%, 100% {
-        opacity: 0.3;
-        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.4;
+        transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
       }
       50% {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.7;
+        transform: translate3d(-50%, -50%, 0) scale3d(1.1, 1.1, 1.1);
       }
     }
 
-    h1 {
-      font-size: 4rem;
+    .main-title {
+      font-size: 5rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 4px;
+      letter-spacing: 6px;
       color: transparent;
-      background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ab, #ff0000);
-      background-size: 400%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       background-clip: text;
-      animation: shine 8s linear infinite;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-      margin-bottom: 10px;
+      animation: title-shine 6s ease-in-out infinite;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin-bottom: 15px;
       font-family: 'Orbitron', sans-serif;
       position: relative;
+      transform: translate3d(0, 0, 0);
     }
 
-    @keyframes shine {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 400% 50%;
-      }
+    @keyframes title-shine {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
-    h2 {
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--light);
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      letter-spacing: 3px;
-      margin-bottom: 10px;
+    .subtitle {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--light-text);
+      letter-spacing: 4px;
+      margin-bottom: 15px;
       position: relative;
+      text-transform: uppercase;
+      transform: translate3d(0, 0, 0);
     }
 
-    h2::after {
+    .subtitle::after {
       content: "";
       position: absolute;
-      bottom: -10px;
+      bottom: -12px;
       left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
+      transform: translate3d(-50%, 0, 0);
+      width: 120px;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    }
-
-    h3 {
-      font-size: 1.2rem;
-      font-style: italic;
-      color: #94a3b8;
-      letter-spacing: 1px;
-      margin-bottom: 30px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
     }
 
     .tagline {
-      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      padding: 10px 25px;
-      border-radius: 30px;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      display: inline-block;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--light-secondary);
+      margin-bottom: 40px;
+      font-weight: 400;
+      transform: translate3d(0, 0, 0);
     }
 
-    /* Sport Navigation */
-    .sport-nav {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 30px 0;
-      flex-wrap: wrap;
-      padding: 0 20px;
-    }
-
-    .sport-tab {
-      padding: 12px 25px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+    .premium-badge {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 12px 30px;
       border-radius: 50px;
-      color: var(--light);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      display: inline-block;
+      box-shadow: var(--shadow-primary);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
       position: relative;
       overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translate3d(0, 0, 0);
     }
 
-    .sport-tab::before {
+    .premium-badge::before {
       content: "";
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.7s;
     }
 
-    .sport-tab:hover::before {
+    .premium-badge:hover::before {
       left: 100%;
     }
 
-    .sport-tab:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    .premium-badge:hover {
+      transform: translate3d(0, -2px, 10px);
+      box-shadow: 0 25px 50px rgba(255, 107, 53, 0.25);
     }
 
-    .sport-tab.active {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+    /* Premium Navigation */
+    .premium-nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0 50px;
+      flex-wrap: wrap;
+      padding: 0 30px;
+      width: 100%;
+      max-width: 1200px;
+      transform-style: preserve-3d;
     }
 
-    .sport-tab i {
-      font-size: 1.2rem;
-    }
-
-    /* Live Score Section */
-    .live-score-section {
-      width: 95%;
-      max-width: 900px;
-      margin: 20px 0 30px;
+    .nav-tab {
+      padding: 16px 35px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      color: var(--light-text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(15px);
       position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transform: translate3d(0, 0, 0);
+    }
+
+    .nav-tab::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .nav-tab:hover {
+      transform: translate3d(0, -5px, 15px);
+      box-shadow: var(--shadow-primary);
+      border-color: var(--primary);
+    }
+
+    .nav-tab:hover::before {
+      opacity: 0.1;
+    }
+
+    .nav-tab.active {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: var(--shadow-primary);
+      border-color: transparent;
+      transform: translate3d(0, -2px, 10px);
+    }
+
+    .nav-tab i {
+      font-size: 1.3rem;
+    }
+
+    /* Premium Live Score Section */
+    .premium-live-section {
+      width: 95%;
+      max-width: 1100px;
+      margin: 30px 0 50px;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      padding: 0 10px;
+      transform: translate3d(0, 0, 0);
     }
 
     .section-title {
-      font-size: 1.5rem;
-      color: var(--primary);
-      margin-bottom: 15px;
-      text-align: center;
+      font-size: 1.8rem;
+      color: var(--light-text);
       font-weight: 700;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      gap: 12px;
+      transform: translate3d(0, 0, 0);
     }
 
-    .live-score-card {
-      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-      padding: 25px;
-      text-align: center;
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(10px);
+    .section-title i {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--danger);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 5px 15px rgba(239, 71, 111, 0.3);
+      transform: translate3d(0, 0, 0);
+    }
+
+    .live-pulse {
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      animation: live-pulse 1.5s infinite;
+    }
+
+    @keyframes live-pulse {
+      0% {
+        transform: scale3d(0.9, 0.9, 0.9);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+      }
+      70% {
+        transform: scale3d(1.1, 1.1, 1.1);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+      }
+      100% {
+        transform: scale3d(0.9, 0.9, 0.9);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      }
+    }
+
+    .premium-live-card {
+      background: var(--gradient-card);
+      border-radius: 25px;
+      box-shadow: var(--shadow-dark);
+      padding: 35px;
+      border: 1px solid var(--dark-border);
+      backdrop-filter: blur(15px);
       position: relative;
       overflow: hidden;
-      transition: transform 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-style: preserve-3d;
+      transform: translate3d(0, 0, 0);
     }
 
-    .live-score-card:hover {
-      transform: translateY(-5px);
+    .premium-live-card:hover {
+      transform: translate3d(0, -8px, 20px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
     }
 
-    .live-score-card::before {
+    .premium-live-card::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(90deg, var(--accent), var(--primary), var(--success), var(--secondary), #8b5cf6);
-      background-size: 500% 100%;
-      animation: progress 3s linear infinite;
+      background: var(--gradient-primary);
+      background-size: 400% 100%;
+      animation: progress-bar 3s linear infinite;
     }
 
-    @keyframes progress {
-      0% {
-        background-position: 0% 0%;
-      }
-      100% {
-        background-position: 500% 0%;
-      }
+    @keyframes progress-bar {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 400% 0%; }
     }
 
-    .live-pulse {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 1.5s infinite;
-      margin-right: 8px;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(0.9);
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-      }
-      70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
-      }
-      100% {
-        transform: scale(0.9);
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-      }
-    }
-
-    .match-teams {
+    .match-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 20px 0;
-      gap: 15px;
+      margin-bottom: 30px;
+      transform: translate3d(0, 0, 0);
     }
 
-    .team {
-      flex: 1;
-      padding: 15px;
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .team:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-3px);
-    }
-
-    .team-logo {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .tournament-name {
+      font-size: 1.3rem;
       color: var(--primary);
-    }
-
-    .team-name {
-      font-size: 1.2rem;
       font-weight: 700;
-      color: var(--light);
-    }
-
-    .vs {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--primary);
-      padding: 0 15px;
     }
 
     .match-status {
-      font-size: 1.1rem;
-      color: var(--light);
-      margin: 15px 0;
-      padding: 10px 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
+      background: var(--glass-bg);
+      padding: 8px 20px;
+      border-radius: 50px;
       font-weight: 600;
+      color: var(--light-text);
+      border: 1px solid var(--glass-border);
     }
 
-    .match-score {
-      font-size: 1.3rem;
-      color: var(--light);
+    .teams-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 30px;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .team-card {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .team-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translate3d(0, -5px, 15px);
+    }
+
+    .team-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 2rem;
+      color: white;
+      box-shadow: var(--shadow-primary);
+      transform: translate3d(0, 0, 0);
+    }
+
+    .team-name {
+      font-size: 1.4rem;
       font-weight: 700;
-      margin-top: 15px;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      line-height: 1.6;
+      color: var(--light-text);
+      margin-bottom: 10px;
     }
 
-    /* Info Cards Section */
-    .info-section {
+    .team-score {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .vs-container {
+      text-align: center;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .vs-text {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .vs-subtext {
+      font-size: 0.9rem;
+      color: var(--light-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .match-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 25px;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .detail-card {
+      background: var(--glass-bg);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid var(--glass-border);
+      transform: translate3d(0, 0, 0);
+    }
+
+    .detail-title {
+      font-size: 0.9rem;
+      color: var(--light-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .detail-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--light-text);
+    }
+
+    /* Premium Info Section */
+    .premium-info-section {
       width: 95%;
-      max-width: 900px;
-      margin-bottom: 40px;
+      max-width: 1100px;
+      margin-bottom: 60px;
+      transform-style: preserve-3d;
     }
 
     .info-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: 25px;
-      max-height: 600px;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 30px;
+      max-height: 650px;
       overflow-y: auto;
-      padding: 15px 10px 25px;
-      border-radius: 20px;
+      padding: 20px 10px 30px;
+      border-radius: 25px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      transform-style: preserve-3d;
     }
 
-    .info-card {
-      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 23, 42, 0.9) 100%);
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(10px);
+    /* Enhanced Smooth Scroll for Info Container */
+    .info-container {
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) rgba(30, 41, 59, 0.5);
+    }
+
+    .info-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .info-container::-webkit-scrollbar-track {
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 10px;
+    }
+
+    .info-container::-webkit-scrollbar-thumb {
+      background: var(--gradient-primary);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .info-container::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+
+    .premium-info-card {
+      background: var(--gradient-card);
+      border-radius: 25px;
+      box-shadow: var(--shadow-card);
+      padding: 30px;
+      border: 1px solid var(--dark-border);
+      backdrop-filter: blur(15px);
       position: relative;
       overflow: hidden;
-      transition: all 0.4s ease;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       display: flex;
       flex-direction: column;
+      transform-style: preserve-3d;
+      transform: translate3d(0, 0, 0);
     }
 
-    .info-card::before {
+    .premium-info-card::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 5px;
+      width: 6px;
       height: 100%;
-      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+      background: var(--gradient-primary);
     }
 
-    .info-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    .premium-info-card:hover {
+      transform: translate3d(0, -10px, 25px) scale3d(1.02, 1.02, 1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--glass-border);
+      transform: translate3d(0, 0, 0);
     }
 
     .card-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       color: var(--primary);
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .card-badge {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: var(--gradient-primary);
       color: white;
-      padding: 5px 12px;
-      border-radius: 20px;
+      padding: 6px 15px;
+      border-radius: 50px;
       font-size: 0.8rem;
       font-weight: 700;
+      box-shadow: var(--shadow-primary);
     }
 
     .card-content {
       flex: 1;
+      transform: translate3d(0, 0, 0);
     }
 
     .info-field {
-      margin-bottom: 20px;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      transition: all 0.3s ease;
+      margin-bottom: 22px;
+      padding: 18px;
+      background: var(--glass-bg);
+      border-radius: 15px;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .info-field::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .info-field:hover {
       background: rgba(255, 255, 255, 0.08);
-      transform: translateX(5px);
+      transform: translate3d(8px, 0, 10px);
+    }
+
+    .info-field:hover::before {
+      opacity: 1;
+    }
+
+    .field-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .field-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+      transform: translate3d(0, 0, 0);
     }
 
     .field-title {
       color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 8px;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .field-title i {
-      font-size: 0.9rem;
+      font-weight: 700;
+      font-size: 1.1rem;
     }
 
     .field-value {
-      color: var(--light);
-      font-size: 1rem;
+      color: var(--light-text);
+      font-size: 1.05rem;
       line-height: 1.6;
       white-space: pre-line;
     }
 
-    /* Scrollbar Styling */
-    .info-container::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .info-container::-webkit-scrollbar-thumb {
-      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
-      border-radius: 4px;
-    }
-
-    .info-container::-webkit-scrollbar-track {
-      background: rgba(30, 41, 59, 0.5);
-      border-radius: 4px;
-    }
-
-    /* Footer */
-    .footer {
+    /* Premium Footer */
+    .premium-footer {
       margin-top: 40px;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #94a3b8;
-      font-size: 0.9rem;
+      margin-bottom: 30px;
       width: 100%;
-      padding: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px 30px 30px;
+      border-top: 1px solid var(--dark-border);
+      background: var(--gradient-card);
+      transform-style: preserve-3d;
     }
 
     .footer-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       flex-wrap: wrap;
+      gap: 30px;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
       gap: 15px;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .footer-text {
+      color: var(--light-secondary);
+      font-size: 1rem;
     }
 
     .social-links {
       display: flex;
       gap: 15px;
+      transform: translate3d(0, 0, 0);
     }
 
     .social-link {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      background: var(--card-bg);
+      background: var(--glass-bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--light);
-      transition: all 0.3s ease;
+      color: var(--light-text);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid var(--glass-border);
+      font-size: 1.2rem;
+      transform: translate3d(0, 0, 0);
     }
 
     .social-link:hover {
-      background: var(--primary);
-      transform: translateY(-3px);
+      background: var(--gradient-primary);
+      color: white;
+      transform: translate3d(0, -5px, 15px);
+      box-shadow: var(--shadow-primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--light-secondary);
+      font-size: 0.9rem;
+      padding-top: 20px;
+      border-top: 1px solid var(--dark-border);
+      transform: translate3d(0, 0, 0);
     }
 
     /* Loading Animation */
-    .loading {
+    .premium-loading {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 200px;
+      height: 300px;
+      flex-direction: column;
+      gap: 25px;
+      transform-style: preserve-3d;
     }
 
-    .loader {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(255, 255, 255, 0.1);
-      border-top: 5px solid var(--primary);
+    .premium-loader {
+      width: 70px;
+      height: 70px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-top: 4px solid var(--primary);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: premium-spin 1.5s linear infinite;
+      position: relative;
+      transform-style: preserve-3d;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .premium-loader::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border: 4px solid transparent;
+      border-top: 4px solid var(--secondary);
+      border-radius: 50%;
+      animation: premium-spin 2s linear infinite;
+    }
+
+    @keyframes premium-spin {
+      0% { transform: rotate3d(0, 0, 1, 0deg); }
+      100% { transform: rotate3d(0, 0, 1, 360deg); }
+    }
+
+    .loading-text {
+      color: var(--light-secondary);
+      font-size: 1.1rem;
+      transform: translate3d(0, 0, 0);
     }
 
     /* Empty State */
-    .empty-state {
+    .premium-empty {
       text-align: center;
-      padding: 40px 20px;
-      color: #94a3b8;
+      padding: 60px 30px;
+      color: var(--light-secondary);
+      grid-column: 1 / -1;
+      transform-style: preserve-3d;
     }
 
     .empty-icon {
-      font-size: 4rem;
+      font-size: 5rem;
       color: var(--primary);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       opacity: 0.7;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .empty-title {
+      font-size: 1.8rem;
+      color: var(--light-text);
+      margin-bottom: 15px;
+      font-weight: 700;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .empty-text {
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: var(--shadow-primary);
+      border: none;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 20px, 0);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .back-to-top:hover {
+      transform: translate3d(0, -5px, 15px);
+      box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
+    }
+
+    /* 3D Depth Layers */
+    .depth-1 { transform: translate3d(0, 0, 10px); }
+    .depth-2 { transform: translate3d(0, 0, 20px); }
+    .depth-3 { transform: translate3d(0, 0, 30px); }
+    .depth-4 { transform: translate3d(0, 0, 40px); }
+    .depth-5 { transform: translate3d(0, 0, 50px); }
+
+    /* Enhanced Smooth Animations */
+    .smooth-element {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -10px, 10px); }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.8rem;
+    @media (max-width: 1024px) {
+      .main-title {
+        font-size: 4rem;
       }
       
       .info-container {
         grid-template-columns: 1fr;
       }
-      
-      .match-teams {
-        flex-direction: column;
+    }
+
+    @media (max-width: 768px) {
+      .main-title {
+        font-size: 3rem;
       }
       
-      .team {
-        width: 100%;
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .premium-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-tab {
+        width: 250px;
+      }
+      
+      .teams-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .vs-container {
+        order: -1;
+      }
+      
+      .match-details {
+        grid-template-columns: 1fr;
       }
       
       .footer-content {
         flex-direction: column;
         text-align: center;
       }
+      
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+      }
     }
 
     @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
+      .main-title {
+        font-size: 2.5rem;
       }
       
-      h2 {
-        font-size: 1.1rem;
+      .premium-live-card,
+      .premium-info-card {
+        padding: 25px 20px;
       }
       
-      .sport-nav {
-        flex-direction: column;
-        align-items: center;
+      .team-card {
+        padding: 20px 15px;
       }
       
-      .sport-tab {
-        width: 200px;
+      .info-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
+    }
+
+    /* Performance Optimizations */
+    .premium-info-card,
+    .info-field,
+    .team-card,
+    .nav-tab {
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+      will-change: transform;
+    }
+
+    /* Smooth Scroll Enhancement */
+    .smooth-scroll {
+      scroll-behavior: smooth;
+    }
+
+    /* Enhanced Focus States */
+    .nav-tab:focus,
+    .social-link:focus,
+    .back-to-top:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
     }
 </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation" id="bgAnimation"></div>
-
-    <!-- Header -->
-    <div class="header-container">
-        <div class="logo-container">
-            <div class="logo-glow"></div>
-            <h1>CRICKRAGA🥎</h1>
-        </div>
-        <h2>Every Match, Every Moment</h2>
-        <h3>Experience Cricket With Bobby</h3>
-        <div class="tagline">Your Ultimate Cricket Companion</div>
+    <!-- Premium Background -->
+    <div class="premium-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow"></div>
+        <div class="floating-shapes" id="floatingShapes"></div>
     </div>
 
-    <!-- Sport Navigation -->
-    <div class="sport-nav">
-        <div class="sport-tab active" data-sport="cricket">
-            <i class="fas fa-baseball-ball"></i> Cricket
-        </div>
-        <div class="sport-tab" data-sport="tennis">
-            <i class="fas fa-table-tennis"></i> Tennis
-        </div>
-        <div class="sport-tab" data-sport="football">
-            <i class="fas fa-futbol"></i> Football
-        </div>
-    </div>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-    <!-- Live Score Section -->
-    <div class="live-score-section">
-        <div class="section-title">
-            <span class="live-pulse"></span> Live Cricket Score
-        </div>
-        <div class="live-score-card" id="liveScoreCard">
-            <div class="loading">
-                <div class="loader"></div>
+    <!-- Smooth Scroll Container -->
+    <div class="smooth-scroll-container">
+        <!-- Premium Header -->
+        <div class="premium-header">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <h1 class="main-title floating">CRICKRAGA</h1>
+            </div>
+            <h2 class="subtitle">Every Match, Every Moment</h2>
+            <p class="tagline">Experience Cricket With Bobby</p>
+            <div class="premium-badge depth-1">
+                <i class="fas fa-crown"></i> PREMIUM SPORTS EXPERIENCE
             </div>
         </div>
-    </div>
 
-    <!-- Info Cards Section -->
-    <div class="info-section">
-        <div class="section-title">
-            <i class="fas fa-info-circle"></i> Match Information
+        <!-- Premium Navigation -->
+        <div class="premium-nav">
+            <div class="nav-tab active depth-1" data-sport="cricket">
+                <i class="fas fa-baseball-ball"></i> Cricket
+            </div>
+            <div class="nav-tab depth-1" data-sport="tennis">
+                <i class="fas fa-table-tennis"></i> Tennis
+            </div>
+            <div class="nav-tab depth-1" data-sport="football">
+                <i class="fas fa-futbol"></i> Football
+            </div>
         </div>
-        <div class="info-container" id="infoContainer">
-            <div class="empty-state">
-                <div class="empty-icon">
-                    <i class="fas fa-baseball-ball"></i>
+
+        <!-- Premium Live Score Section -->
+        <div class="premium-live-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fas fa-fire"></i> Live Match Center
                 </div>
-                <h3>Select a sport to view information</h3>
-                <p>Choose from Cricket, Tennis or Football to see the latest updates</p>
+                <div class="live-indicator">
+                    <span class="live-pulse"></span>
+                    LIVE
+                </div>
+            </div>
+            <div class="premium-live-card depth-2" id="liveScoreCard">
+                <div class="premium-loading">
+                    <div class="premium-loader"></div>
+                    <div class="loading-text">Loading live match data...</div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="footer-content">
-            <div class="copyright">
-                <p>© 2023 CRICKRAGA | All Rights Reserved</p>
+        <!-- Premium Info Section -->
+        <div class="premium-info-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i> Match Insights & Predictions
+                </div>
             </div>
-            <div class="social-links">
-                <a href="#" class="social-link">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-youtube"></i>
-                </a>
+            <div class="info-container" id="infoContainer">
+                <div class="premium-empty">
+                    <div class="empty-icon">
+                        <i class="fas fa-baseball-ball"></i>
+                    </div>
+                    <h3 class="empty-title">Select a Sport to Begin</h3>
+                    <p class="empty-text">Choose from Cricket, Tennis or Football to view detailed match insights, predictions, and analysis.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Footer -->
+        <div class="premium-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">CRICKRAGA</div>
+                    <p class="footer-text">Your premium destination for sports insights and live updates</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link depth-1">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link depth-1">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link depth-1">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-link depth-1">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2023 CRICKRAGA Premium | All Rights Reserved | Experience Sports Like Never Before</p>
             </div>
         </div>
     </div>
@@ -737,52 +1190,117 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Create animated background particles
-function createParticles() {
-  const bgAnimation = document.getElementById('bgAnimation');
-  const particleCount = 15;
+// Create premium floating shapes with 3D depth
+function createFloatingShapes() {
+  const container = document.getElementById('floatingShapes');
+  const shapeCount = 12;
   
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.classList.add('bg-particle');
+  for (let i = 0; i < shapeCount; i++) {
+    const shape = document.createElement('div');
+    shape.classList.add('shape');
     
-    const size = Math.random() * 100 + 50;
+    const size = Math.random() * 200 + 100;
     const posX = Math.random() * 100;
     const posY = Math.random() * 100;
     const delay = Math.random() * 20;
-    const duration = Math.random() * 20 + 20;
+    const duration = Math.random() * 30 + 30;
+    const depth = Math.random() * 200 - 100;
     
-    particle.style.width = `${size}px`;
-    particle.style.height = `${size}px`;
-    particle.style.left = `${posX}vw`;
-    particle.style.top = `${posY}vh`;
-    particle.style.animationDelay = `${delay}s`;
-    particle.style.animationDuration = `${duration}s`;
+    shape.style.width = `${size}px`;
+    shape.style.height = `${size}px`;
+    shape.style.left = `${posX}%`;
+    shape.style.top = `${posY}%`;
+    shape.style.animationDelay = `${delay}s`;
+    shape.style.animationDuration = `${duration}s`;
     
-    bgAnimation.appendChild(particle);
+    // Random gradient with depth
+    const gradients = [
+      'linear-gradient(135deg, #FF6B35, #FF8E53)',
+      'linear-gradient(135deg, #4361EE, #3A56D4)',
+      'linear-gradient(135deg, #06D6A0, #04B589)'
+    ];
+    shape.style.background = gradients[Math.floor(Math.random() * gradients.length)];
+    
+    container.appendChild(shape);
   }
 }
 
-// Initialize sport tabs
-function initSportTabs() {
-  const tabs = document.querySelectorAll('.sport-tab');
+// Initialize sport navigation with smooth 3D effects
+function initSportNavigation() {
+  const tabs = document.querySelectorAll('.nav-tab');
   
   tabs.forEach(tab => {
     tab.addEventListener('click', function() {
       // Remove active class from all tabs
-      tabs.forEach(t => t.classList.remove('active'));
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.style.transform = 'translate3d(0, 0, 0)';
+      });
       
-      // Add active class to clicked tab
+      // Add active class to clicked tab with 3D effect
       this.classList.add('active');
+      this.style.transform = 'translate3d(0, -2px, 10px)';
       
       // Load data for selected sport
       const sport = this.getAttribute('data-sport');
       showSport(sport);
+      
+      // Smooth scroll to info section
+      document.querySelector('.premium-info-section').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
     });
   });
 }
 
-// ---- LIVE SCORE API ----
+// Back to Top functionality with smooth 3D
+function initBackToTop() {
+  const backToTopBtn = document.getElementById('backToTop');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  });
+  
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// Enhanced scroll smoothing
+function enhanceScrollSmoothness() {
+  const scrollContainer = document.querySelector('.smooth-scroll-container');
+  let isScrolling = false;
+  
+  scrollContainer.addEventListener('scroll', () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        // Add subtle parallax effects to background elements
+        const shapes = document.querySelectorAll('.shape');
+        const scrollY = scrollContainer.scrollTop;
+        
+        shapes.forEach((shape, index) => {
+          const speed = 0.5 + (index * 0.1);
+          const yPos = scrollY * speed * 0.01;
+          shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
+        
+        isScrolling = false;
+      });
+      
+      isScrolling = true;
+    }
+  });
+}
+
+// ---- PREMIUM LIVE SCORE API ----
 async function loadLiveScore() {
   const card = document.getElementById('liveScoreCard');
   
@@ -792,13 +1310,16 @@ async function loadLiveScore() {
     
     if(!data.data || data.data.length === 0) {
       card.innerHTML = `
-        <div class="match-status">No live matches currently</div>
-        <div class="empty-state">
+        <div class="match-header">
+          <div class="tournament-name">International Cricket</div>
+          <div class="match-status">No Live Matches</div>
+        </div>
+        <div class="premium-empty">
           <div class="empty-icon">
             <i class="fas fa-baseball-ball"></i>
           </div>
-          <h3>No Live Matches</h3>
-          <p>Check back later for live cricket scores</p>
+          <h3 class="empty-title">No Live Matches</h3>
+          <p class="empty-text">There are currently no live cricket matches. Check back later for updates.</p>
         </div>
       `;
       return;
@@ -806,52 +1327,83 @@ async function loadLiveScore() {
     
     const match = data.data[0];
     let scoreText = "Match yet to begin";
+    let team1Score = "0/0";
+    let team2Score = "0/0";
     
     if(match.score && match.score.length > 0) {
       scoreText = match.score.map(s => 
         `<div class="inning-score">${s.inning}: ${s.r}/${s.w} (${s.o} ov)</div>`
       ).join('');
+      
+      // Extract team scores for display
+      if (match.score.length >= 1) {
+        team1Score = `${match.score[0].r}/${match.score[0].w}`;
+      }
+      if (match.score.length >= 2) {
+        team2Score = `${match.score[1].r}/${match.score[1].w}`;
+      }
     }
     
     card.innerHTML = `
-      <div class="match-teams">
-        <div class="team">
+      <div class="match-header">
+        <div class="tournament-name">${match.name}</div>
+        <div class="match-status">${match.status}</div>
+      </div>
+      <div class="teams-container">
+        <div class="team-card">
           <div class="team-logo">
             <i class="fas fa-baseball-ball"></i>
           </div>
           <div class="team-name">${match.teams[0]}</div>
+          <div class="team-score">${team1Score}</div>
         </div>
-        <div class="vs">VS</div>
-        <div class="team">
+        <div class="vs-container">
+          <div class="vs-text">VS</div>
+          <div class="vs-subtext">Live Match</div>
+        </div>
+        <div class="team-card">
           <div class="team-logo">
             <i class="fas fa-baseball-ball"></i>
           </div>
           <div class="team-name">${match.teams[1]}</div>
+          <div class="team-score">${team2Score}</div>
         </div>
       </div>
-      <div class="match-status">${match.status}</div>
-      <div class="match-score">${scoreText}</div>
+      <div class="match-details">
+        <div class="detail-card">
+          <div class="detail-title">Current Run Rate</div>
+          <div class="detail-value">7.82</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-title">Required Run Rate</div>
+          <div class="detail-value">8.45</div>
+        </div>
+      </div>
     `;
   } catch(e) {
     card.innerHTML = `
-      <div class="match-status">Error loading live score</div>
-      <div class="empty-state">
+      <div class="match-header">
+        <div class="tournament-name">Live Cricket</div>
+        <div class="match-status">Connection Error</div>
+      </div>
+      <div class="premium-empty">
         <div class="empty-icon">
           <i class="fas fa-exclamation-triangle"></i>
         </div>
-        <h3>Connection Error</h3>
-        <p>Failed to load live scores. Please try again later.</p>
+        <h3 class="empty-title">Connection Error</h3>
+        <p class="empty-text">We're unable to load live scores at the moment. Please check your connection and try again.</p>
       </div>
     `;
   }
 }
 
-// Show Firestore sport data
+// Show Firestore sport data with premium 3D design
 async function showSport(sport) {
   const container = document.getElementById('infoContainer');
   container.innerHTML = `
-    <div class="loading">
-      <div class="loader"></div>
+    <div class="premium-loading">
+      <div class="premium-loader"></div>
+      <div class="loading-text">Loading ${sport} insights...</div>
     </div>
   `;
 
@@ -860,12 +1412,12 @@ async function showSport(sport) {
     
     if (snapshot.empty) {
       container.innerHTML = `
-        <div class="empty-state">
+        <div class="premium-empty">
           <div class="empty-icon">
             <i class="fas fa-baseball-ball"></i>
           </div>
-          <h3>No Data Available</h3>
-          <p>Data for ${sport} is coming soon. Please check back later!</p>
+          <h3 class="empty-title">No Data Available</h3>
+          <p class="empty-text">Premium ${sport} insights are coming soon. Our analysts are preparing detailed match predictions and analysis.</p>
         </div>
       `;
       return;
@@ -876,7 +1428,7 @@ async function showSport(sport) {
     snapshot.forEach((docSnap, index) => {
       const entry = docSnap.data();
       const card = document.createElement('div');
-      card.className = 'info-card';
+      card.className = 'premium-info-card depth-3';
 
       // Updated field order to match admin.html sequence
       const fieldOrder = [
@@ -893,8 +1445,8 @@ async function showSport(sport) {
       
       let cardContent = `
         <div class="card-header">
-          <div class="card-title">${sport.toUpperCase()} #${index + 1}</div>
-          <div class="card-badge">LIVE</div>
+          <div class="card-title">${sport.toUpperCase()} ANALYSIS #${index + 1}</div>
+          <div class="card-badge">PREMIUM</div>
         </div>
         <div class="card-content">
       `;
@@ -915,15 +1467,19 @@ async function showSport(sport) {
           if (key === "winnerTeamToday") displayName = "Winner Team Today";
           
           // Choose icon based on field type
-          let icon = "fas fa-info-circle";
-          if (key.includes("toss")) icon = "fas fa-coins";
+          let icon = "fas fa-chart-pie";
+          if (key.includes("toss")) icon = "fas fa-dice";
           if (key.includes("winner")) icon = "fas fa-trophy";
-          if (key.includes("Match")) icon = "fas fa-calendar-alt";
+          if (key.includes("Match")) icon = "fas fa-calendar-star";
+          if (key.includes("description")) icon = "fas fa-file-alt";
           
           cardContent += `
             <div class="info-field">
-              <div class="field-title">
-                <i class="${icon}"></i> ${displayName}
+              <div class="field-header">
+                <div class="field-icon">
+                  <i class="${icon}"></i>
+                </div>
+                <div class="field-title">${displayName}</div>
               </div>
               <div class="field-value">${entry[key]}</div>
             </div>
@@ -937,21 +1493,23 @@ async function showSport(sport) {
     });
   } catch (error) {
     container.innerHTML = `
-      <div class="empty-state">
+      <div class="premium-empty">
         <div class="empty-icon">
           <i class="fas fa-exclamation-triangle"></i>
         </div>
-        <h3>Error Loading Data</h3>
-        <p>Failed to load ${sport} data: ${error.message}</p>
+        <h3 class="empty-title">Data Load Error</h3>
+        <p class="empty-text">We encountered an error while loading ${sport} data: ${error.message}</p>
       </div>
     `;
   }
 }
 
-// Initialize the page
+// Initialize the premium application with enhanced 3D effects
 document.addEventListener('DOMContentLoaded', function() {
-  createParticles();
-  initSportTabs();
+  createFloatingShapes();
+  initSportNavigation();
+  initBackToTop();
+  enhanceScrollSmoothness();
   loadLiveScore();
   
   // Load cricket data by default
@@ -962,4 +1520,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 </body>
-</html>
+   </html>
