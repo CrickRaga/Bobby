@@ -69,8 +69,21 @@ h3 {
 }
 @keyframes chrome {0%{background-position:0% 50%;}100%{background-position:300% 50%;}}
 .btn:hover {box-shadow:0 2px 4px rgba(0,0,0,0.4), inset 2px 2px 6px rgba(255,255,255,0.8), inset -3px -3px 10px rgba(0,0,0,0.25); transform: translateY(2px);}
+.live-score-container {
+  width:95%; max-width:700px; margin-top:25px;
+}
+.live-score {
+  background:#f8f8ff;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(64,128,255,0.07);
+  padding:16px 14px;
+  margin-bottom:18px;
+  text-align:center;
+}
+.live-score h4 {margin:5px 0 8px 0;font-size:1.05rem;}
+.live-score p {margin:4px 0;font-size:0.98rem;}
 .info-container {
-  margin-top:30px;
+  margin-top:10px;
   width:95%; max-width:700px;
   display:flex; flex-direction:column; gap:20px;
   max-height:500px; overflow-y:auto; padding-bottom:10px;
@@ -113,6 +126,14 @@ h3 {
   <button class="btn" onclick="showSport('football')">Football</button>
 </div>
 
+<!-- LIVE SCORE BELOW BUTTONS -->
+<div class="live-score-container">
+  <div class="live-score" id="liveScoreBox">
+    <h4>Live Cricket Score</h4>
+    <p>Loading live score...</p>
+  </div>
+</div>
+
 <div class="info-container" id="infoContainer"></div>
 
 <script type="module">
@@ -132,7 +153,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Show sport data fetched from Firestore
+// ---- LIVE SCORE API ----
+async function loadLiveScore() {
+  const box = document.getElementById('liveScoreBox');
+  box.innerHTML = `<h4>Live Cricket Score</h4><p>Loading...</p>`;
+  try {
+    const res = await fetch("https://api.cricapi.com/v1/currentMatches?apikey=6c8e89de-8cb4-4072-a88c-545f31ff0136&offset=0");
+    const data = await res.json();
+    if(!data.data || data.data.length === 0){
+      box.innerHTML = "<h4>Live Cricket Score</h4><p>No live match found</p>";
+      return;
+    }
+    const match = data.data[0];
+    let scoreText = "No score yet";
+    if(match.score && match.score.length > 0) {
+      scoreText = match.score.map(s=>`${s.inning}: ${s.r}/${s.w} (${s.o} ov)`).join("<br>");
+    }
+    box.innerHTML = `<h4>${match.name}</h4>
+    <p><b>${match.teams[0]}</b> vs <b>${match.teams[1]}</b></p>
+    <p>Status: ${match.status}</p>
+    <p>${scoreText}</p>`;
+  } catch(e) {
+    box.innerHTML = `<h4>Live Cricket Score</h4><p>Error loading score</p>`;
+  }
+}
+loadLiveScore();
+setInterval(loadLiveScore, 30000);
+
+// Show Firestore sport data - UPDATED TO MATCH ADMIN.HTML SEQUENCE
 async function showSport(sport) {
   const container = document.getElementById('infoContainer');
   container.innerHTML = ''; // clear previous
@@ -140,7 +188,7 @@ async function showSport(sport) {
   try {
     const snapshot = await getDocs(collection(db, sport));
     if (snapshot.empty) {
-      alert(`⚠️ No data for ${sport}. Add via Admin Page.`);
+      alert(`⚠️ DatA ${sport}. CominG SooN.`);
       return;
     }
 
@@ -153,27 +201,42 @@ async function showSport(sport) {
       matchTitle.textContent = `${sport.toUpperCase()} Entry #${index + 1}`;
       wrapper.appendChild(matchTitle);
 
-const fieldOrder = [
-  "upcomingMatch",
-  "description",
-  "tossBet",
-  "tossFlip",
-  "tossResult",
-  "tossWinner",
-  "winnerTeamChooseTo",
-  "tossBetMarket",
-  "winnerTeamToday"
-];
-fieldOrder.forEach(key => {
-  if (entry[key]) {
-    const fieldTitle = document.createElement('h4');
-    fieldTitle.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
-    const para = document.createElement('p');
-    para.textContent = entry[key];
-    wrapper.appendChild(fieldTitle);
-    wrapper.appendChild(para);
-  }
-});
+      // Updated field order to match admin.html sequence
+      const fieldOrder = [
+        "upcomingMatch",
+        "description",
+        "tossBet",
+        "tossFlip",
+        "tossResult",
+        "tossWinner",
+        "winnerTeamChooseTo",
+        "tossBetMarket",
+        "winnerTeamToday"
+      ];
+      
+      fieldOrder.forEach(key => {
+        if (entry[key]) {
+          const fieldTitle = document.createElement('h4');
+          // Format field name for display
+          let displayName = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+          
+          // Special formatting for specific fields
+          if (key === "upcomingMatch") displayName = "Upcoming Match";
+          if (key === "tossBet") displayName = "Toss Bet";
+          if (key === "tossFlip") displayName = "Toss Flip";
+          if (key === "tossResult") displayName = "Toss Result";
+          if (key === "tossWinner") displayName = "Toss Winner";
+          if (key === "winnerTeamChooseTo") displayName = "Winner Team Choose To";
+          if (key === "tossBetMarket") displayName = "Toss Bet Market";
+          if (key === "winnerTeamToday") displayName = "Winner Team Today";
+          
+          fieldTitle.textContent = displayName;
+          const para = document.createElement('p');
+          para.textContent = entry[key];
+          wrapper.appendChild(fieldTitle);
+          wrapper.appendChild(para);
+        }
+      });
 
       container.appendChild(wrapper);
     });
@@ -182,7 +245,6 @@ fieldOrder.forEach(key => {
   }
 }
 
-// Export function for buttons
 window.showSport = showSport;
 </script>
 </body>
