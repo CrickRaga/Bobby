@@ -4,144 +4,728 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRICKRAGA🥎</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     * {
       -webkit-tap-highlight-color: transparent;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Orbitron', sans-serif;
     }
 
-body {
-  margin:0; padding:0;
-  background:#fff;
-  font-family:Arial,sans-serif;
-  display:flex; flex-direction:column; align-items:center;
-  min-height:100vh;
-}
-h1 {
-  margin-top:40px;
-  font-size:2rem;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:4px;
-  color:transparent;
-  background: linear-gradient(90deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#7a00ff,#ff00ab,#ff0000);
-  background-size:400%;
-  -webkit-background-clip:text;
-  background-clip:text;
-  animation:shine 6s linear infinite;
-  text-shadow:2px 2px 6px rgba(0,0,0,0.25);
-}
-@keyframes shine{0%{background-position:0% 50%;}100%{background-position:400% 50%;}}
-h2 {
-  margin-top:-5px;
-  font-size:.8rem;
-  font-weight:600;
-  color:#444;
-  text-shadow:0 0 5px rgba(0,0,0,0.15);
-  letter-spacing:1px;
-}
-h3 {
-  margin-top:5px;
-  font-size:1.2rem;
-  font-style:italic;
-  color:#666;
-  letter-spacing:0.5px;
-  text-shadow:0 0 4px rgba(0,0,0,0.1);
-}
-.button-container {margin-top:20px; display:flex; gap:20px;}
-.btn {
-  padding:8px 20px; font-size:0.95rem; font-weight:700;
-  background:#fff; border:3px solid transparent; border-radius:12px;
-  cursor:pointer; color:#222; position:relative;
-  box-shadow:0 4px 8px rgba(0,0,0,0.3), inset 2px 2px 6px rgba(255,255,255,0.7), inset -3px -3px 8px rgba(0,0,0,0.2);
-  transition: all 0.25s ease-in-out;
-}
-.btn::before {
-  content:""; position:absolute; top:-3px; left:-3px; right:-3px; bottom:-3px;
-  border-radius:12px; padding:3px;
-  background: linear-gradient(120deg,#d7d7d7,#ffffff,#aaaaaa,#000000,#bbbbbb,#ffffff,#444444,#d7d7d7);
-  background-size:300% 300%; animation: chrome 5s linear infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude; z-index:-1;
-}
-@keyframes chrome {0%{background-position:0% 50%;}100%{background-position:300% 50%;}}
-.btn:hover {box-shadow:0 2px 4px rgba(0,0,0,0.4), inset 2px 2px 6px rgba(255,255,255,0.8), inset -3px -3px 10px rgba(0,0,0,0.25); transform: translateY(2px);}
-.live-score-container {
-  width:95%; max-width:700px; margin-top:25px;
-}
-.live-score {
-  background:#f8f8ff;
-  border-radius:12px;
-  box-shadow:0 8px 20px rgba(64,128,255,0.07);
-  padding:16px 14px;
-  margin-bottom:18px;
-  text-align:center;
-}
-.live-score h4 {margin:5px 0 8px 0;font-size:1.05rem;}
-.live-score p {margin:4px 0;font-size:0.98rem;}
-.info-container {
-  margin-top:10px;
-  width:95%; max-width:700px;
-  display:flex; flex-direction:column; gap:20px;
-  max-height:500px; overflow-y:auto; padding-bottom:10px;
-}
-.info-card {
-  background:#f8f8f8; padding:15px; border-radius:15px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.25);
-  text-align:center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.info-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
-}
-.info-card h4 {margin:5px 0; color:#222; font-size:1rem;}
-.info-card p {margin:3px 0; white-space: pre-line; color:#444; font-size:0.95rem; line-height:1.5;}
-.info-container::-webkit-scrollbar {width:8px;}
-.info-container::-webkit-scrollbar-thumb {background:#ccc; border-radius:4px;}
-.info-container::-webkit-scrollbar-track {background:#f0f0f0; border-radius:4px;}
-.admin-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
+    :root {
+      --primary: #f59e0b;
+      --primary-dark: #d97706;
+      --secondary: #3b82f6;
+      --accent: #ef4444;
+      --success: #10b981;
+      --dark: #0f172a;
+      --darker: #0a0f1c;
+      --light: #e2e8f0;
+      --lighter: #f8fafc;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1e293b 100%);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--light);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .bg-particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      opacity: 0.1;
+      animation: float-particle 20s infinite linear;
+    }
+
+    @keyframes float-particle {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      25% {
+        transform: translateY(-20vh) translateX(10vw);
+      }
+      50% {
+        transform: translateY(10vh) translateX(20vw);
+      }
+      75% {
+        transform: translateY(20vh) translateX(-10vw);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    /* Header Styles */
+    .header-container {
+      text-align: center;
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+      padding: 0 20px;
+    }
+
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .logo-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      filter: blur(40px);
+      opacity: 0.3;
+      z-index: -1;
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: transparent;
+      background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ab, #ff0000);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 8s linear infinite;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      margin-bottom: 10px;
+      font-family: 'Orbitron', sans-serif;
+      position: relative;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 400% 50%;
+      }
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--light);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #94a3b8;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+    }
+
+    .tagline {
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      padding: 10px 25px;
+      border-radius: 30px;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+    }
+
+    /* Sport Navigation */
+    .sport-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+
+    .sport-tab {
+      padding: 12px 25px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 50px;
+      color: var(--light);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sport-tab::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .sport-tab:hover::before {
+      left: 100%;
+    }
+
+    .sport-tab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .sport-tab.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    .sport-tab i {
+      font-size: 1.2rem;
+    }
+
+    /* Live Score Section */
+    .live-score-section {
+      width: 95%;
+      max-width: 900px;
+      margin: 20px 0 30px;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .live-score-card {
+      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      text-align: center;
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .live-score-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .live-score-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), var(--primary), var(--success), var(--secondary), #8b5cf6);
+      background-size: 500% 100%;
+      animation: progress 3s linear infinite;
+    }
+
+    @keyframes progress {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 500% 0%;
+      }
+    }
+
+    .live-pulse {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+      }
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+      }
+    }
+
+    .match-teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+      gap: 15px;
+    }
+
+    .team {
+      flex: 1;
+      padding: 15px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .team:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .team-logo {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .team-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--light);
+    }
+
+    .vs {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      padding: 0 15px;
+    }
+
+    .match-status {
+      font-size: 1.1rem;
+      color: var(--light);
+      margin: 15px 0;
+      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .match-score {
+      font-size: 1.3rem;
+      color: var(--light);
+      font-weight: 700;
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+
+    /* Info Cards Section */
+    .info-section {
+      width: 95%;
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
+
+    .info-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 25px;
+      max-height: 600px;
+      overflow-y: auto;
+      padding: 15px 10px 25px;
+      border-radius: 20px;
+    }
+
+    .info-card {
+      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 23, 42, 0.9) 100%);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-badge {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .info-field {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .info-field:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(5px);
+    }
+
+    .field-title {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .field-title i {
+      font-size: 0.9rem;
+    }
+
+    .field-value {
+      color: var(--light);
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    /* Scrollbar Styling */
+    .info-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .info-container::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+      border-radius: 4px;
+    }
+
+    .info-container::-webkit-scrollbar-track {
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 4px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      width: 100%;
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-top: 5px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #94a3b8;
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      
+      .info-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .match-teams {
+        flex-direction: column;
+      }
+      
+      .team {
+        width: 100%;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      h2 {
+        font-size: 1.1rem;
+      }
+      
+      .sport-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .sport-tab {
+        width: 200px;
+      }
+    }
 </style>
 </head>
 <body>
-<h1>CRICKRAGA🥎</h1>
-<h2>Every Match, Every Moment</h2>
-<h3>Experience Cricket With Bobby</h3>
+    <!-- Animated Background -->
+    <div class="bg-animation" id="bgAnimation"></div>
 
-<div class="button-container">
-  <button class="btn" onclick="showSport('cricket')">Cricket</button>
-  <button class="btn" onclick="showSport('tennis')">Tennis</button>
-  <button class="btn" onclick="showSport('football')">Football</button>
-</div>
+    <!-- Header -->
+    <div class="header-container">
+        <div class="logo-container">
+            <div class="logo-glow"></div>
+            <h1>CRICKRAGA🥎</h1>
+        </div>
+        <h2>Every Match, Every Moment</h2>
+        <h3>Experience Cricket With Bobby</h3>
+        <div class="tagline">Your Ultimate Cricket Companion</div>
+    </div>
 
-<!-- LIVE SCORE BELOW BUTTONS -->
-<div class="live-score-container">
-  <div class="live-score" id="liveScoreBox">
-    <h4>Live Cricket Score</h4>
-    <p>Loading live score...</p>
-  </div>
-</div>
+    <!-- Sport Navigation -->
+    <div class="sport-nav">
+        <div class="sport-tab active" data-sport="cricket">
+            <i class="fas fa-baseball-ball"></i> Cricket
+        </div>
+        <div class="sport-tab" data-sport="tennis">
+            <i class="fas fa-table-tennis"></i> Tennis
+        </div>
+        <div class="sport-tab" data-sport="football">
+            <i class="fas fa-futbol"></i> Football
+        </div>
+    </div>
 
-<div class="info-container" id="infoContainer"></div>
+    <!-- Live Score Section -->
+    <div class="live-score-section">
+        <div class="section-title">
+            <span class="live-pulse"></span> Live Cricket Score
+        </div>
+        <div class="live-score-card" id="liveScoreCard">
+            <div class="loading">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Cards Section -->
+    <div class="info-section">
+        <div class="section-title">
+            <i class="fas fa-info-circle"></i> Match Information
+        </div>
+        <div class="info-container" id="infoContainer">
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-baseball-ball"></i>
+                </div>
+                <h3>Select a sport to view information</h3>
+                <p>Choose from Cricket, Tennis or Football to see the latest updates</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="copyright">
+                <p>© 2023 CRICKRAGA | All Rights Reserved</p>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
 <script type="module">
 // Firebase SDK imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-// Firebase config and init (same as admin.html)
+// Firebase config and init
 const firebaseConfig = {
   apiKey: "AIzaSyCs6amWdsq62IKw9mGcL7aZK5GAcVlrVVE",
   authDomain: "bobby-3c61e.firebaseapp.com",
@@ -153,58 +737,151 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Create animated background particles
+function createParticles() {
+  const bgAnimation = document.getElementById('bgAnimation');
+  const particleCount = 15;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('bg-particle');
+    
+    const size = Math.random() * 100 + 50;
+    const posX = Math.random() * 100;
+    const posY = Math.random() * 100;
+    const delay = Math.random() * 20;
+    const duration = Math.random() * 20 + 20;
+    
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${posX}vw`;
+    particle.style.top = `${posY}vh`;
+    particle.style.animationDelay = `${delay}s`;
+    particle.style.animationDuration = `${duration}s`;
+    
+    bgAnimation.appendChild(particle);
+  }
+}
+
+// Initialize sport tabs
+function initSportTabs() {
+  const tabs = document.querySelectorAll('.sport-tab');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      // Remove active class from all tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      
+      // Add active class to clicked tab
+      this.classList.add('active');
+      
+      // Load data for selected sport
+      const sport = this.getAttribute('data-sport');
+      showSport(sport);
+    });
+  });
+}
+
 // ---- LIVE SCORE API ----
 async function loadLiveScore() {
-  const box = document.getElementById('liveScoreBox');
-  box.innerHTML = `<h4>Live Cricket Score</h4><p>Loading...</p>`;
+  const card = document.getElementById('liveScoreCard');
+  
   try {
     const res = await fetch("https://api.cricapi.com/v1/currentMatches?apikey=6c8e89de-8cb4-4072-a88c-545f31ff0136&offset=0");
     const data = await res.json();
-    if(!data.data || data.data.length === 0){
-      box.innerHTML = "<h4>Live Cricket Score</h4><p>No live match found</p>";
+    
+    if(!data.data || data.data.length === 0) {
+      card.innerHTML = `
+        <div class="match-status">No live matches currently</div>
+        <div class="empty-state">
+          <div class="empty-icon">
+            <i class="fas fa-baseball-ball"></i>
+          </div>
+          <h3>No Live Matches</h3>
+          <p>Check back later for live cricket scores</p>
+        </div>
+      `;
       return;
     }
+    
     const match = data.data[0];
-    let scoreText = "No score yet";
+    let scoreText = "Match yet to begin";
+    
     if(match.score && match.score.length > 0) {
-      scoreText = match.score.map(s=>`${s.inning}: ${s.r}/${s.w} (${s.o} ov)`).join("<br>");
+      scoreText = match.score.map(s => 
+        `<div class="inning-score">${s.inning}: ${s.r}/${s.w} (${s.o} ov)</div>`
+      ).join('');
     }
-    box.innerHTML = `<h4>${match.name}</h4>
-    <p><b>${match.teams[0]}</b> vs <b>${match.teams[1]}</b></p>
-    <p>Status: ${match.status}</p>
-    <p>${scoreText}</p>`;
+    
+    card.innerHTML = `
+      <div class="match-teams">
+        <div class="team">
+          <div class="team-logo">
+            <i class="fas fa-baseball-ball"></i>
+          </div>
+          <div class="team-name">${match.teams[0]}</div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="team">
+          <div class="team-logo">
+            <i class="fas fa-baseball-ball"></i>
+          </div>
+          <div class="team-name">${match.teams[1]}</div>
+        </div>
+      </div>
+      <div class="match-status">${match.status}</div>
+      <div class="match-score">${scoreText}</div>
+    `;
   } catch(e) {
-    box.innerHTML = `<h4>Live Cricket Score</h4><p>Error loading score</p>`;
+    card.innerHTML = `
+      <div class="match-status">Error loading live score</div>
+      <div class="empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>Connection Error</h3>
+        <p>Failed to load live scores. Please try again later.</p>
+      </div>
+    `;
   }
 }
-loadLiveScore();
-setInterval(loadLiveScore, 30000);
 
-// Show Firestore sport data - UPDATED TO MATCH ADMIN.HTML SEQUENCE
+// Show Firestore sport data
 async function showSport(sport) {
   const container = document.getElementById('infoContainer');
-  container.innerHTML = ''; // clear previous
+  container.innerHTML = `
+    <div class="loading">
+      <div class="loader"></div>
+    </div>
+  `;
 
   try {
     const snapshot = await getDocs(collection(db, sport));
+    
     if (snapshot.empty) {
-      alert(`⚠️ DatA ${sport}. CominG SooN.`);
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">
+            <i class="fas fa-baseball-ball"></i>
+          </div>
+          <h3>No Data Available</h3>
+          <p>Data for ${sport} is coming soon. Please check back later!</p>
+        </div>
+      `;
       return;
     }
 
+    container.innerHTML = '';
+    
     snapshot.forEach((docSnap, index) => {
       const entry = docSnap.data();
-      const wrapper = document.createElement('div');
-      wrapper.className = 'info-card';
-
-      const matchTitle = document.createElement('h4');
-      matchTitle.textContent = `${sport.toUpperCase()} Entry #${index + 1}`;
-      wrapper.appendChild(matchTitle);
+      const card = document.createElement('div');
+      card.className = 'info-card';
 
       // Updated field order to match admin.html sequence
       const fieldOrder = [
         "upcomingMatch",
-        "description",
+        "description", 
         "tossBet",
         "tossFlip",
         "tossResult",
@@ -214,9 +891,16 @@ async function showSport(sport) {
         "winnerTeamToday"
       ];
       
+      let cardContent = `
+        <div class="card-header">
+          <div class="card-title">${sport.toUpperCase()} #${index + 1}</div>
+          <div class="card-badge">LIVE</div>
+        </div>
+        <div class="card-content">
+      `;
+      
       fieldOrder.forEach(key => {
         if (entry[key]) {
-          const fieldTitle = document.createElement('h4');
           // Format field name for display
           let displayName = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
           
@@ -230,22 +914,52 @@ async function showSport(sport) {
           if (key === "tossBetMarket") displayName = "Toss Bet Market";
           if (key === "winnerTeamToday") displayName = "Winner Team Today";
           
-          fieldTitle.textContent = displayName;
-          const para = document.createElement('p');
-          para.textContent = entry[key];
-          wrapper.appendChild(fieldTitle);
-          wrapper.appendChild(para);
+          // Choose icon based on field type
+          let icon = "fas fa-info-circle";
+          if (key.includes("toss")) icon = "fas fa-coins";
+          if (key.includes("winner")) icon = "fas fa-trophy";
+          if (key.includes("Match")) icon = "fas fa-calendar-alt";
+          
+          cardContent += `
+            <div class="info-field">
+              <div class="field-title">
+                <i class="${icon}"></i> ${displayName}
+              </div>
+              <div class="field-value">${entry[key]}</div>
+            </div>
+          `;
         }
       });
-
-      container.appendChild(wrapper);
+      
+      cardContent += `</div>`;
+      card.innerHTML = cardContent;
+      container.appendChild(card);
     });
   } catch (error) {
-    alert('Error fetching data: ' + error.message);
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>Error Loading Data</h3>
+        <p>Failed to load ${sport} data: ${error.message}</p>
+      </div>
+    `;
   }
 }
 
-window.showSport = showSport;
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+  createParticles();
+  initSportTabs();
+  loadLiveScore();
+  
+  // Load cricket data by default
+  showSport('cricket');
+  
+  // Refresh live score every 30 seconds
+  setInterval(loadLiveScore, 30000);
+});
 </script>
 </body>
 </html>
